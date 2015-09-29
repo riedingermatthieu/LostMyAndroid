@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Lost My Android</string>
 
-    <string name="hello_world">SALUT = LOST MY ANDROID IS HERE !!!</string>
+    <string name="hello_world">LOST MY ANDROID IS HERE !!!</string>
     <string name="action_settings">Settings</string>
 </resources>
