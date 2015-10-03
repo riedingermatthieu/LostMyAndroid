@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="400dp"
-            android:id="@+id/logo"
+            android:id="@+id/viewLogo"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/lego" />
 
@@ -32,7 +32,8 @@
             android:layout_marginTop="50dp"
             android:phoneNumber="true"
             android:textStyle="bold"
-            android:hint="Entrer votre numéro" />
+            android:hint="Entrer le numéro"
+            android:gravity="center" />
 
         <LinearLayout
             android:orientation="horizontal"
