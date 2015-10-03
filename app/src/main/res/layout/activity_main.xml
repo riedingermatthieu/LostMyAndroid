@@ -50,14 +50,16 @@
                 android:layout_height="wrap_content"
                 android:text="Faire sonner"
                 android:id="@+id/buttonRing"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="20dp" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Message vocal"
                 android:id="@+id/buttonVocalMessage"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="20dp" />
 
         </LinearLayout>
 
