@@ -27,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         number = (EditText) findViewById(R.id.editNumero);
         ringIt = (Button) findViewById(R.id.buttonRing);
         vocalMessage = (Button) findViewById(R.id.buttonVocalMessage);
+        textMessage = (Button) findViewById(R.id.buttonTextMessage);
+
+
 
 
     }
