@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    >
+    android:background="#ff473f">
 
     <LinearLayout
         android:orientation="vertical"
@@ -12,15 +12,15 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="#1bff22">
 
         <ImageView
-            android:layout_width="410dp"
-            android:layout_height="410dp"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
             android:id="@+id/logo"
             android:layout_gravity="center_horizontal"
-            android:padding="200dp"
-            android:src="@drawable/ic_action_name2" />
+            android:src="@drawable/lego" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -29,7 +29,10 @@
             android:ems="10"
             android:id="@+id/editNumero"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="50dp"
+            android:phoneNumber="true"
+            android:textStyle="bold"
+            android:hint="Entrer votre numéro" />
 
         <LinearLayout
             android:orientation="horizontal"
