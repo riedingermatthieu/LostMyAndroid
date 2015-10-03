@@ -15,6 +15,7 @@ public class MyReceiver extends BroadcastReceiver {
         Bundle extras = intent.getExtras();
         if (extras != null) {
             // TODO Implement SMS Receiving behaviour
+
         }
     }
 }
