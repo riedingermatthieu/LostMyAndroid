@@ -40,7 +40,8 @@
                 android:textStyle="bold"
                 android:hint="Entrer le numéro"
                 android:gravity="center"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:maxLength="10" />
 
             <LinearLayout
                 android:orientation="horizontal"
