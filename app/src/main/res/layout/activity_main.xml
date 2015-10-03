@@ -16,61 +16,74 @@
         android:background="#1bff22">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="400dp"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:id="@+id/viewLogo"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/lego" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:ems="10"
-            android:id="@+id/editNumero"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:phoneNumber="true"
-            android:textStyle="bold"
-            android:hint="Entrer le numéro"
-            android:gravity="center" />
+            android:src="@drawable/lego"
+            android:layout_weight="1" />
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:baselineAligned="false"
-            android:contextClickable="false"
-            android:gravity="center"
-            android:layout_marginTop="50dp">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-            <Button
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Faire sonner"
-                android:id="@+id/buttonRing"
+                android:inputType="phone"
+                android:ems="10"
+                android:id="@+id/editNumero"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="20dp" />
+                android:phoneNumber="true"
+                android:textStyle="bold"
+                android:hint="Entrer le numéro"
+                android:gravity="center"
+                android:layout_weight="1" />
 
-            <Button
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:baselineAligned="false"
+                android:contextClickable="false"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Faire sonner"
+                    android:id="@+id/buttonRing"
+                    android:layout_gravity="center_horizontal" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Message vocal"
+                    android:id="@+id/buttonVocalMessage"
+                    android:layout_gravity="center_horizontal" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Message Texte"
+                    android:id="@+id/buttonTextMessage"
+                    android:layout_gravity="center_horizontal" />
+
+            </LinearLayout>
+
+            <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Message vocal"
-                android:id="@+id/buttonVocalMessage"
+                android:text="Anti arrachement"
+                android:id="@+id/switchArrachement"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="20dp" />
-
+                android:checked="true"
+                android:layout_weight="1" />
         </LinearLayout>
-
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Anti arrachement"
-            android:id="@+id/switchArrachement"
-            android:layout_gravity="center_horizontal"
-            android:checked="true"
-            android:layout_marginTop="50dp" />
 
     </LinearLayout>
 </RelativeLayout>
