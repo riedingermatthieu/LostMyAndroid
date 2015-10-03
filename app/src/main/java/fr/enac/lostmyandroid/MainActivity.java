@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         vocalMessage = (Button) findViewById(R.id.buttonVocalMessage);
         textMessage = (Button) findViewById(R.id.buttonTextMessage);
 
+        //
+
 
 
 
