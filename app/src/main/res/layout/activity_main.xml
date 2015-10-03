@@ -15,8 +15,8 @@
         android:layout_alignParentBottom="true">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="410dp"
+            android:layout_height="410dp"
             android:id="@+id/logo"
             android:layout_gravity="center_horizontal"
             android:padding="200dp"
@@ -28,12 +28,13 @@
             android:inputType="phone"
             android:ems="10"
             android:id="@+id/editNumero"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:baselineAligned="false"
             android:contextClickable="false"
@@ -55,5 +56,15 @@
                 android:layout_gravity="center_horizontal" />
 
         </LinearLayout>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anti arrachement"
+            android:id="@+id/switchArrachement"
+            android:layout_gravity="center_horizontal"
+            android:checked="true"
+            android:layout_marginTop="50dp" />
+
     </LinearLayout>
 </RelativeLayout>
