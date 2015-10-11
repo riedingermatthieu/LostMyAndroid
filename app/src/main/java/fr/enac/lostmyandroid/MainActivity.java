@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -30,11 +31,18 @@ public class MainActivity extends AppCompatActivity {
         textMessage = (Button) findViewById(R.id.buttonTextMessage);
 
         //
-
+        ringIt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ringIntent = new Intent(getBaseContext(), RingActivity.class);
+                startActivity(ringIntent);
+            }
+        });
 
 
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
