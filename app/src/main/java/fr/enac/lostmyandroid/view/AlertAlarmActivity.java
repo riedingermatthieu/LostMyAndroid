@@ -13,6 +13,7 @@ import fr.enac.lostmyandroid.R;
 
 public class AlertAlarmActivity extends AppCompatActivity {
 
+    private Integer lockCode; // Pour le code de sécurité TODO à revoir
     private MediaPlayer mPlayer = null;
 
     @Override
@@ -41,6 +42,10 @@ public class AlertAlarmActivity extends AppCompatActivity {
         mPlayer.start();
     }
 
+
+
+
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -62,4 +67,6 @@ public class AlertAlarmActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    */
 }
