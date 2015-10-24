@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.util.SortedMap;
+
 import fr.enac.lostmyandroid.R;
 import fr.enac.lostmyandroid.utilities.PopupMessage;
 
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Switch numero;
 
+    private SmsManager smsManager;
+
     public static final String CODE_RING = "RING";
     public static final String CODE_TEXT = "TEXT";
     public static final String CODE_VOCAL = "VOCAL";
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        smsManager = SmsManager.getDefault();
 
         // Loading components
         number = (EditText) findViewById(R.id.editNumero);
@@ -42,13 +48,12 @@ public class MainActivity extends AppCompatActivity {
         ringIt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SmsManager smsManager = SmsManager.getDefault();
+
                 if (numeroValide()) {
                     smsManager.sendTextMessage(getNumero(), null, CODE_RING, null, null);
                 }
-                else {
+                else
                     Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
-                }
             }
         });
 
@@ -56,17 +61,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (numeroValide()) {
-                    PopupMessage pm = new PopupMessage(getNumero());
+                    PopupMessage pm = new PopupMessage();
+                    pm.setNumero(getNumero());
                     pm.show(getFragmentManager(), "");
                 }
+                else
+                    Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
             }
         });
 
         vocalMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(number.getText().toString(), null, CODE_VOCAL, null, null);
+                if (numeroValide()) {
+                    smsManager.sendTextMessage(getNumero(), null, CODE_VOCAL, null, null);
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
             }
         });
 
