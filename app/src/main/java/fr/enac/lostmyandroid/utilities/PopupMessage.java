@@ -5,9 +5,13 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.provider.Telephony;
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
+import android.widget.EditText;
 
 import fr.enac.lostmyandroid.R;
+import fr.enac.lostmyandroid.view.MainActivity;
 
 /**
  * Created by Amine on 24/10/2015.
@@ -15,6 +19,11 @@ import fr.enac.lostmyandroid.R;
 
 public class PopupMessage extends DialogFragment {
 
+    private String myNumero;
+
+    public void setNumero(String numero) {
+        myNumero = numero;
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -29,7 +38,8 @@ public class PopupMessage extends DialogFragment {
                 .setPositiveButton(R.string.envoyer, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        // TODO enregister le message à envoyer
+                        SmsManager smsManager = SmsManager.getDefault();
+                        smsManager.sendTextMessage(myNumero, null, MainActivity.CODE_TEXT + );
                     }
                 })
                 .setNegativeButton(R.string.annuler, new DialogInterface.OnClickListener() {
