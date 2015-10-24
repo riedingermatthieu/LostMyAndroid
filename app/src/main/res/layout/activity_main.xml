@@ -43,10 +43,8 @@
                 android:inputType="phone"
                 android:maxLength="10"
                 android:phoneNumber="true"
-
                 android:textSize="20pt"
                 android:textColorHighlight="#0000FF"
-
                 android:textColor="#C2E0FF"
                 android:textColorHint="#C2E0FF"
                 android:textStyle="bold" />
