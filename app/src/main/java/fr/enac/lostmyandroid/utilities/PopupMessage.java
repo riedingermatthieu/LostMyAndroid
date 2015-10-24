@@ -56,8 +56,6 @@ public class PopupMessage extends DialogFragment {
         return builder.create();
     }
 
-
-
     // Override the Fragment.onAttach() method to instantiate the NoticeDialogListener
     @Override
     public void onAttach(Activity activity) {
