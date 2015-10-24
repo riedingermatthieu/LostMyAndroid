@@ -53,6 +53,11 @@ public class MyReceiver extends BroadcastReceiver {
                 myContext.startActivity(intent2);
                 break;
             case "VOCAL":
+                break;
+            default:
+                Intent intent3 = new Intent(myContext, AlertAlarmActivity.class);
+                intent3.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                myContext.startActivity(intent3);
         }
     }
 

@@ -20,12 +20,7 @@ import fr.enac.lostmyandroid.view.MainActivity;
 
 public class PopupMessage extends DialogFragment {
 
-    private String myNumero;
     public NoticeDialogListener ndl;
-
-    public void setNumero(String numero) {
-        myNumero = numero;
-    }
 
     /* The activity that creates an instance of this dialog fragment must
      * implement this interface in order to receive event callbacks.
@@ -43,8 +38,6 @@ public class PopupMessage extends DialogFragment {
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-
-
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(inflater.inflate(R.layout.popup_textmessage, null))
@@ -52,10 +45,7 @@ public class PopupMessage extends DialogFragment {
                 .setPositiveButton(R.string.envoyer, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        //SmsManager smsManager = SmsManager.getDefault();
-                        //smsManager.sendTextMessage(myNumero, null, MainActivity.CODE_TEXT +);
                         ndl.onDialogPositiveClick(PopupMessage.this);
-
                     }
                 })
                 .setNegativeButton(R.string.annuler, new DialogInterface.OnClickListener() {

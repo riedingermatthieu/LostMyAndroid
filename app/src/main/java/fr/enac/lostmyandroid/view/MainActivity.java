@@ -37,7 +37,9 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
-        // TODO ton truc zarbi
+        EditText message = (EditText) dialog.getView().findViewById(R.id.message);
+        String contenuMessage = message.getText().toString();
+        smsManager.sendTextMessage(getNumero(), null, CODE_TEXT + ": " + contenuMessage, null, null);
     }
 
     @Override
@@ -71,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
             public void onClick(View v) {
                 if (numeroValide()) {
                     PopupMessage pm = new PopupMessage();
-                    pm.setNumero(getNumero());
                     pm.show(getFragmentManager(), "");
                 }
                 else
