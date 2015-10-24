@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
         vocalMessage = (Button) findViewById(R.id.buttonVocalMessage);
         textMessage = (Button) findViewById(R.id.buttonTextMessage);
 
-        //
         ringIt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
 
