@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 
+import fr.enac.lostmyandroid.utilities.PopupMessage;
+
 public class MainActivity extends AppCompatActivity {
     private EditText number;
     private Button ringIt;
@@ -36,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent ringIntent = new Intent(getBaseContext(), RingActivity.class);
                 startActivity(ringIntent);
+            }
+        });
+
+        textMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMessage pm = new PopupMessage();
+
+                pm.show(getFragmentManager(),"");
             }
         });
 
