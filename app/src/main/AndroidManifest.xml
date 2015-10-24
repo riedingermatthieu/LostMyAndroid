@@ -33,6 +33,10 @@
             android:name=".RingActivity"
             android:label="@string/title_activity_ring" >
         </activity>
+        <activity
+            android:name=".AlertAlarmActivity"
+            android:label="@string/title_activity_alert_alarm" >
+        </activity>
     </application>
 
 </manifest>
