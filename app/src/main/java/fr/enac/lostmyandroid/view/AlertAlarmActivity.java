@@ -23,8 +23,7 @@ public class AlertAlarmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alert_alarm);
 
-        AudioManager audioManager =
-                (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
                 audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -35,6 +34,8 @@ public class AlertAlarmActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // TODO rentrer le code avant d'arrêter l'alarme
                 mPlayer.stop();
             }
         });
