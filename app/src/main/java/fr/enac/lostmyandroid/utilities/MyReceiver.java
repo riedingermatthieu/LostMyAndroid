@@ -11,6 +11,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import fr.enac.lostmyandroid.R;
+import fr.enac.lostmyandroid.view.AlertAlarmActivity;
 
 public class MyReceiver extends BroadcastReceiver {
 
@@ -42,19 +43,18 @@ public class MyReceiver extends BroadcastReceiver {
 
         switch (smsBody) {
             case "RING":
-                playSound(R.raw.alarm);
+                Intent intent = new Intent(myContext, AlertAlarmActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                myContext.startActivity(intent);
                 break;
             case "TEXT":
+                Intent intent2 = new Intent(myContext, AlertAlarmActivity.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                myContext.startActivity(intent2);
+                break;
             case "VOCAL":
         }
     }
 
-    private void playSound(int resId) {
-        if(mPlayer != null) {
-            mPlayer.stop();
-            mPlayer.release();
-        }
-        mPlayer = MediaPlayer.create(myContext, resId);
-        mPlayer.start();
-    }
+
 }
