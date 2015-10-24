@@ -1,5 +1,6 @@
 package fr.enac.lostmyandroid.view;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +18,7 @@ import java.util.SortedMap;
 import fr.enac.lostmyandroid.R;
 import fr.enac.lostmyandroid.utilities.PopupMessage;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PopupMessage.NoticeDialogListener{
     private EditText number;
     private Button ringIt;
     private Button vocalMessage;
@@ -30,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
     public static final String CODE_RING = "RING";
     public static final String CODE_TEXT = "TEXT";
     public static final String CODE_VOCAL = "VOCAL";
+
+
+    /* Interface à implémenter */
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        // TODO ton truc zarbi
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
