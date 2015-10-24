@@ -44,7 +44,7 @@
                 android:maxLength="10"
                 android:phoneNumber="true"
 
-                android:textSize="18pt"
+                android:textSize="20pt"
                 android:textColorHighlight="#0000FF"
 
                 android:textColor="#C2E0FF"
