@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,15 +33,31 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
     public static final String CODE_TEXT = "TEXT";
     public static final String CODE_VOCAL = "VOCAL";
 
-
+    EditText message;
+    PopupMessage pm;
     /* Interface à implémenter */
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
-        EditText message = (EditText) dialog.getView().findViewById(R.id.message);
+
+        message = (EditText) dialog.getDialog().findViewById(R.id.message);
+        //message = (EditText) findViewById(R.id.message);
+        if (message != null) {
+            Log.d("YO", "Il n'est pas null");
+        }
+        else
+            Log.d("YO", "Il est null");
+            //message = (EditText) pm.getView().findViewById(R.id.message)
+
+
         String contenuMessage = message.getText().toString();
+
+        Log.d("Res", contenuMessage);
+
         smsManager.sendTextMessage(getNumero(), null, CODE_TEXT + ": " + contenuMessage, null, null);
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
             @Override
             public void onClick(View v) {
                 if (numeroValide()) {
-                    PopupMessage pm = new PopupMessage();
+                    /*PopupMessage*/ pm = new PopupMessage();
                     pm.show(getFragmentManager(), "");
                 }
                 else

@@ -45,6 +45,7 @@ public class PopupMessage extends DialogFragment {
                 .setPositiveButton(R.string.envoyer, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+
                         ndl.onDialogPositiveClick(PopupMessage.this);
                     }
                 })
