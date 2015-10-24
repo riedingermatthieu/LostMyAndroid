@@ -1,9 +1,11 @@
-package fr.enac.lostmyandroid;
+package fr.enac.lostmyandroid.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import fr.enac.lostmyandroid.R;
 
 public class RingActivity extends AppCompatActivity {
 

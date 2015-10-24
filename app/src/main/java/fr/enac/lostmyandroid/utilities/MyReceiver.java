@@ -1,4 +1,4 @@
-package fr.enac.lostmyandroid;
+package fr.enac.lostmyandroid.utilities;
 
 
 import android.content.BroadcastReceiver;
@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.Toast;
+
+import fr.enac.lostmyandroid.R;
 
 public class MyReceiver extends BroadcastReceiver {
 
