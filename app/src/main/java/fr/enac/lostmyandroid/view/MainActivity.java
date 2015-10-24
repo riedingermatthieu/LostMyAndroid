@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import fr.enac.lostmyandroid.R;
 import fr.enac.lostmyandroid.utilities.PopupMessage;
@@ -22,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Switch numero;
 
+    public static final String CODE_RING = "RING";
+    public static final String CODE_TEXT = "TEXT";
+    public static final String CODE_VOCAL = "VOCAL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +43,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(number.getText().toString(), null, "RING", null, null);
+                if (numeroValide()) {
+                    smsManager.sendTextMessage(getNumero(), null, CODE_RING, null, null);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         textMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopupMessage pm = new PopupMessage();
-
-                pm.show(getFragmentManager(), "");
+                if (numeroValide()) {
+                    PopupMessage pm = new PopupMessage(getNumero());
+                    pm.show(getFragmentManager(), "");
+                }
             }
         });
 
@@ -56,10 +66,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(number.getText().toString(), null, "VOCAL", null, null);
+                smsManager.sendTextMessage(number.getText().toString(), null, CODE_VOCAL, null, null);
             }
         });
 
+    }
+
+    private boolean numeroValide() {
+        String numero = number.getText().toString();
+        return numero.length() == 10;
+    }
+
+    private String getNumero() {
+        return number.getText().toString();
     }
 
     @Override
