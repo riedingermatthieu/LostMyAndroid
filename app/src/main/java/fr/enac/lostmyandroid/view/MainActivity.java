@@ -41,16 +41,8 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
     public void onDialogPositiveClick(DialogFragment dialog) {
 
         message = (EditText) dialog.getDialog().findViewById(R.id.message);
-        //message = (EditText) findViewById(R.id.message);
-        if (message != null) {
-            Log.d("YO", "Il n'est pas null");
-        }
-        else
-            Log.d("YO", "Il est null");
-            //message = (EditText) pm.getView().findViewById(R.id.message)
-
-
         String contenuMessage = message.getText().toString();
+
 
         Log.d("Res", contenuMessage);
 

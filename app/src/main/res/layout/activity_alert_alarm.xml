@@ -20,8 +20,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:text="Ceci est une alarme de l&apos;application LostMyAndroid"
-        android:id="@+id/title" />
+        android:textColor="#FFFF"
+        android:textSize="26pt"
+        android:textStyle="bold"
+        android:text="@string/message_alerte"
+        android:id="@+id/TextView_message_alerte" />
 
     <Button
         android:layout_width="wrap_content"
