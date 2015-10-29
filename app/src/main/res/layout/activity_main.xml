@@ -65,21 +65,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Faire sonner" />
+                    android:text="@string/buttonRing" />
 
                 <Button
                     android:id="@+id/buttonVocalMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Message vocal" />
+                    android:text="@string/buttonVocalMessage" />
 
                 <Button
                     android:id="@+id/buttonTextMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Message Texte" />
+                    android:text="@string/buttonTextMessage" />
 
             </LinearLayout>
 

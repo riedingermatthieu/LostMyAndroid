@@ -6,9 +6,9 @@
     <string name="title_activity_ring">RingActivity</string>
     <string name="title_activity_home_tabbed">HomeTabbedActivity</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="buttonRing">Ring</string>
+    <string name="buttonVocalMessage">Vocal</string>
+    <string name="buttonTextMessage">Message</string>
 
     <string name="Switch">Anti-Arrachement</string>
     <string name="message_alerte">Le vol... C\'est Mal</string>
@@ -18,4 +18,5 @@
     <string name="envoyer">Envoyer  </string>
     <string name="annuler">Annuler</string>
     <string name="title_activity_alert_alarm">AlertAlarmActivity</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

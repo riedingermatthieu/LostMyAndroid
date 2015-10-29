@@ -93,6 +93,11 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
             public void onClick(View v) {
                 if (numeroValide()) {
                     smsManager.sendTextMessage(getNumero(), null, CODE_VOCAL, null, null);
+
+                    // FIXME Test maps -> Requires GOOGLE PLAY SERVICE INSTALLED
+                    Intent intent3 = new Intent(getApplicationContext(), MapsActivity.class);
+                    intent3.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getApplicationContext().startActivity(intent3);
                 }
                 else
                     Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();

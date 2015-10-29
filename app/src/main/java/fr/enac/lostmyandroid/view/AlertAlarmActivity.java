@@ -51,8 +51,4 @@ public class AlertAlarmActivity extends AppCompatActivity {
         mPlayer.start();
     }
 
-
-
-
-
 }

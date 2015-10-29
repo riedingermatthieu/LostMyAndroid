@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import fr.enac.lostmyandroid.R;
 import fr.enac.lostmyandroid.view.AlertAlarmActivity;
+import fr.enac.lostmyandroid.view.MapsActivity;
 
 public class MyReceiver extends BroadcastReceiver {
 
@@ -54,10 +55,16 @@ public class MyReceiver extends BroadcastReceiver {
                 break;
             case "VOCAL":
                 break;
-            default:
-                Intent intent3 = new Intent(myContext, AlertAlarmActivity.class);
+            // TODO Show Phone coordinates on map
+            case "MAP" :
+                Intent intent3 = new Intent(myContext, MapsActivity.class);
                 intent3.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 myContext.startActivity(intent3);
+
+            default:
+                Intent intent4 = new Intent(myContext, AlertAlarmActivity.class);
+                intent4.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                myContext.startActivity(intent4);
         }
     }
 
