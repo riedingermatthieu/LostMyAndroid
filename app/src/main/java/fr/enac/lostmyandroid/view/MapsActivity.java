@@ -50,7 +50,9 @@ public class MapsActivity extends FragmentActivity {
                     .getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
+                System.out.print("Set up map");
                 setUpMap();
+
             }
         }
     }
