@@ -17,8 +17,10 @@ import android.util.Log;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -111,7 +113,7 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
         // Getting Current Location
         location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
-        mLastLocation
+
         //mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
         mLastLocation = getMyLocation();
 
@@ -150,6 +152,15 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
     {
         mMap.addMarker(new MarkerOptions().position(new LatLng(deviceLoc.getLatitude(),
                 deviceLoc.getLongitude())).title("Device"));
+        //Build camera position
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(new LatLng(deviceLoc.getLatitude(),
+                        deviceLoc.getLongitude()))
+                .zoom(14).build();
+        //Zoom in and animate the camera.
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+
     }
 
 
