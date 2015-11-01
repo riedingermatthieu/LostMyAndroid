@@ -48,13 +48,11 @@ public class MyReceiver extends BroadcastReceiver {
                 Intent intent = new Intent(myContext, AlertAlarmActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 myContext.startActivity(intent);
-                abortBroadcast();
                 break;
             case "TEXT":
                 Intent intent2 = new Intent(myContext, AlertAlarmActivity.class);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 myContext.startActivity(intent2);
-                abortBroadcast();
                 break;
             case "VOCAL":
                 break;
@@ -63,7 +61,6 @@ public class MyReceiver extends BroadcastReceiver {
                 Intent intent3 = new Intent(myContext, MapsActivity.class);
                 intent3.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 myContext.startActivity(intent3);
-                abortBroadcast();
         }
     }
 

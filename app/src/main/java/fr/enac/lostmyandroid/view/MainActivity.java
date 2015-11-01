@@ -26,8 +26,9 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
     private Button textMessage;
 
     private Switch numero;
-
     private SmsManager smsManager;
+
+    private Switch antiArrachement;
 
     public static final String CODE_RING = "RING";
     public static final String CODE_TEXT = "TEXT";
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
         ringIt = (Button) findViewById(R.id.buttonRing);
         vocalMessage = (Button) findViewById(R.id.buttonVocalMessage);
         textMessage = (Button) findViewById(R.id.buttonTextMessage);
+        antiArrachement = (Switch) findViewById(R.id.switchArrachement);
 
         ringIt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,8 +133,7 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
+
             return true;
         }
 

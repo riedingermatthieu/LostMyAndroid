@@ -56,10 +56,6 @@
             android:name=".view.AlertAlarmActivity"
             android:label="@string/title_activity_alert_alarm" >
         </activity>
-        <activity
-            android:name=".view.SettingsActivity"
-            android:label="@string/title_activity_settings" >
-        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"

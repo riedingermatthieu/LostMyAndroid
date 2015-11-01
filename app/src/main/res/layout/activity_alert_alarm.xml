@@ -12,19 +12,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/antitheft_logo"/>
+        android:src="@drawable/antitheft_logo"
+        android:layout_weight="1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
         android:textColor="#FFFF"
         android:textSize="26pt"
         android:textStyle="bold"
         android:text="@string/message_alerte"
-        android:id="@+id/TextView_message_alerte" />
+        android:id="@+id/TextView_message_alerte"
+        android:layout_weight="1" />
 
     <Button
         android:layout_width="wrap_content"
@@ -33,5 +33,6 @@
         android:text="Cliquer pour arreter"
         android:id="@+id/button"
         android:layout_below="@+id/title"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_weight="1" />
 </LinearLayout>
