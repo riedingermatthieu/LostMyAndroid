@@ -42,6 +42,12 @@ public class AlertAlarmActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mPlayer.stop();
+    }
+
     private void playSound(int resId) {
         if (mPlayer != null) {
             mPlayer.stop();
