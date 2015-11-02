@@ -69,18 +69,13 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
                 float delta = mAccelCurrent - mAccelLast;
                 mAccel = mAccel * 0.9f + delta; // perform low-cut filter
 
-
                 if (mAccel > 1) {
                     alarmActivated = true;
                     Intent intent = new Intent(getApplicationContext(), AlertAlarmActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     getApplicationContext().startActivity(intent);
                 }
-
             }
-
-
-
         }
 
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -132,7 +127,6 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
         ringIt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (numeroValide())
                     smsManager.sendTextMessage(getNumero(), null, CODE_RING, null, null);
             }
@@ -142,11 +136,9 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
             @Override
             public void onClick(View v) {
                 if (numeroValide()) {
-                    /*PopupMessage*/ pm = new PopupMessage();
+                    pm = new PopupMessage();
                     pm.show(getFragmentManager(), "");
                 }
-                else
-                    Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -155,14 +147,7 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
             public void onClick(View v) {
                 if (numeroValide()) {
                     smsManager.sendTextMessage(getNumero(), null, CODE_VOCAL, null, null);
-
-                    // FIXME Test maps -> Requires GOOGLE PLAY SERVICE INSTALLED
-                    Intent intent3 = new Intent(getApplicationContext(), MapsActivity.class);
-                    intent3.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    getApplicationContext().startActivity(intent3);
                 }
-                else
-                    Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -175,8 +160,6 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
                     abortSensor();
             }
         });
-
-
 
         localiser.setOnClickListener(new View.OnClickListener() {
             @Override
