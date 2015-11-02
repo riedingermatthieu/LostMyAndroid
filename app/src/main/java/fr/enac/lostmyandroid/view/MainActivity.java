@@ -37,18 +37,11 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
     private Button localiser;
 
     private Switch numero;
-    private SmsManager smsManager;
-
-    private Switch antiArrachement;
 
     public static final String CODE_RING = "RING";
     public static final String CODE_TEXT = "TEXT";
     public static final String CODE_VOCAL = "VOCAL";
     public static final String CODE_LOCALISER = "LOCATION";
-
-    EditText message;
-    PopupMessage pm;
-    /* Interface à implémenter */
 
     private SmsManager smsManager;
 
@@ -104,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
     public void abortSensor() {
         mSensorManager.unregisterListener(mSensorListener);
     }
-
 
 
     // Pop-up Send message
