@@ -30,6 +30,8 @@ public class MyReceiver extends BroadcastReceiver {
     private LocationListener locationListener;
     private String expediteur;
 
+    private final String RETURN_LOCATION = "RETURN_LOCATION";
+
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -47,9 +49,7 @@ public class MyReceiver extends BroadcastReceiver {
 
                 traiteMessage(smsBody);
             }
-
         }
-
     }
 
     private void traiteMessage(String smsBody) {
@@ -86,9 +86,13 @@ public class MyReceiver extends BroadcastReceiver {
 
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
-        } else if (smsBody.startsWith("RETURN_LOCATION")) {
+        } else if (smsBody.startsWith(RETURN_LOCATION)) {
             Intent intent4 = new Intent(myContext, MapsActivity.class);
             intent4.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            String result = smsBody.substring("RETURN_LOCATION".length());
+            String location[] = result.split(",");
+            intent4.putExtra("longitude", Float.valueOf(location[0]));
+            intent4.putExtra("latitude", Float.valueOf(location[1]));
             myContext.startActivity(intent4);
         }
     }
@@ -99,11 +103,10 @@ public class MyReceiver extends BroadcastReceiver {
 
     private void returnLocation(Location location) {
         SmsManager smsManager = SmsManager.getDefault();
-        String contenu = "RETURN_LOCATION ";
+        String contenu = "";
+        contenu += RETURN_LOCATION;
         contenu += location.getLongitude();
-        contenu += ", " + location.getLatitude();
+        contenu += "," + location.getLatitude();
         smsManager.sendTextMessage(expediteur, null, contenu, null, null);
     }
-
-
 }
