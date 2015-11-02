@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import fr.enac.lostmyandroid.R;
 
@@ -13,6 +15,11 @@ public class TextActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text);
+
+        TextView text = (TextView) findViewById(R.id.text);
+        String resultat = "Message de l'application Lost My Android: ";
+        resultat += savedInstanceState.getString("message");
+        text.setText(resultat);
     }
 
     @Override

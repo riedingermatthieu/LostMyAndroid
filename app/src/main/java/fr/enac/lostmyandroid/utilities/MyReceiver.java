@@ -62,10 +62,13 @@ public class MyReceiver extends BroadcastReceiver {
         } else if (smsBody.startsWith(MainActivity.CODE_TEXT)) {
             Intent intent2 = new Intent(myContext, AlertAlarmActivity.class);
             intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            String message = smsBody.substring(MainActivity.CODE_TEXT.length());
+            intent2.putExtra("message", message);
             myContext.startActivity(intent2);
 
         } else if (smsBody.startsWith(MainActivity.CODE_VOCAL)) {
             // TODO lancer Activité Vocal
+
         } else if (smsBody.startsWith(MainActivity.CODE_LOCALISER)) {
             locationManager = (LocationManager) myContext.getSystemService(Context.LOCATION_SERVICE);
             locationListener = new LocationListener() {
@@ -89,7 +92,7 @@ public class MyReceiver extends BroadcastReceiver {
         } else if (smsBody.startsWith(RETURN_LOCATION)) {
             Intent intent4 = new Intent(myContext, MapsActivity.class);
             intent4.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            String result = smsBody.substring("RETURN_LOCATION".length());
+            String result = smsBody.substring(RETURN_LOCATION.length());
             String location[] = result.split(",");
             intent4.putExtra("longitude", Float.valueOf(location[0]));
             intent4.putExtra("latitude", Float.valueOf(location[1]));
