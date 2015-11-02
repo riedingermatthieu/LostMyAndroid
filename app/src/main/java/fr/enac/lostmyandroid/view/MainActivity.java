@@ -1,7 +1,13 @@
 package fr.enac.lostmyandroid.view;
 
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
@@ -10,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -19,10 +26,13 @@ import java.util.SortedMap;
 import fr.enac.lostmyandroid.R;
 import fr.enac.lostmyandroid.utilities.PopupMessage;
 
-public class MainActivity extends AppCompatActivity implements PopupMessage.NoticeDialogListener {
+public class MainActivity extends AppCompatActivity implements PopupMessage.NoticeDialogListener{
+
+    //View Data
     private EditText number;
     private Button ringIt;
     private Button vocalMessage;
+    private Switch antiArrachement;
     private Button textMessage;
     private Button localiser;
 
@@ -40,6 +50,64 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
     PopupMessage pm;
     /* Interface à implémenter */
 
+    private SmsManager smsManager;
+
+    private EditText message;
+    private PopupMessage pm;
+
+
+    // Shake detection Data
+    private SensorManager mSensorManager;
+    private float mAccel; // acceleration apart from gravity
+    private float mAccelCurrent; // current acceleration including gravity
+    private float mAccelLast; // last acceleration including gravity
+
+    private final SensorEventListener mSensorListener = new SensorEventListener() {
+        boolean alarmActivated = false;
+
+        public void onSensorChanged(SensorEvent se) {
+
+            if(!alarmActivated) {
+                float x = se.values[0];
+                float y = se.values[1];
+                float z = se.values[2];
+                mAccelLast = mAccelCurrent;
+                mAccelCurrent = (float) Math.sqrt((double) (x*x + y*y + z*z));
+                float delta = mAccelCurrent - mAccelLast;
+                mAccel = mAccel * 0.9f + delta; // perform low-cut filter
+
+
+                if (mAccel > 1) {
+                    alarmActivated = true;
+                    Intent intent = new Intent(getApplicationContext(), AlertAlarmActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getApplicationContext().startActivity(intent);
+                }
+
+            }
+
+
+
+        }
+
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        }
+    };
+
+    public void initSensor() {
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+        mAccel = 0.00f;
+        mAccelCurrent = SensorManager.GRAVITY_EARTH;
+        mAccelLast = SensorManager.GRAVITY_EARTH;
+    }
+    public void abortSensor() {
+        mSensorManager.unregisterListener(mSensorListener);
+    }
+
+
+
+    // Pop-up Send message
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
 
@@ -51,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
 
         smsManager.sendTextMessage(getNumero(), null, CODE_TEXT + ": " + contenuMessage, null, null);
     }
+
 
 
     @Override
@@ -81,10 +150,11 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
             @Override
             public void onClick(View v) {
                 if (numeroValide()) {
-                    /*PopupMessage*/
-                    pm = new PopupMessage();
+                    /*PopupMessage*/ pm = new PopupMessage();
                     pm.show(getFragmentManager(), "");
                 }
+                else
+                    Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -95,10 +165,26 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
                     smsManager.sendTextMessage(getNumero(), null, CODE_VOCAL, null, null);
 
                     // FIXME Test maps -> Requires GOOGLE PLAY SERVICE INSTALLED
-
+                    Intent intent3 = new Intent(getApplicationContext(), MapsActivity.class);
+                    intent3.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getApplicationContext().startActivity(intent3);
                 }
+                else
+                    Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
             }
         });
+
+        antiArrachement.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                    initSensor();
+                else
+                    abortSensor();
+            }
+        });
+
+
 
         localiser.setOnClickListener(new View.OnClickListener() {
             @Override
