@@ -32,8 +32,6 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private GoogleApiClient mGoogleApiClient;
-    private Location mLastLocation;
-    private Location location;
     private float latitude;
     private float longitude;
 
@@ -131,6 +129,4 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.i("ErreurAuth", connectionResult.getErrorMessage());
     }
-
-
 }

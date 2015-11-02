@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">Lost My Android</string>
 
-    <string name="hello_world">update LOST MY ANDROID IS HERE !!!</string>
+    <string name="hello_world">LOST MY ANDROID IS HERE !!!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_ring">RingActivity</string>
     <string name="title_activity_home_tabbed">HomeTabbedActivity</string>
 
-    <string name="buttonRing">Ring</string>
-    <string name="buttonVocalMessage">Vocal</string>
-    <string name="buttonTextMessage">Message</string>
+    <string name="buttonRing">Faire sonner</string>
+    <string name="buttonVocalMessage">Message vocal</string>
+    <string name="buttonTextMessage">Message texte</string>
     <string name="buttonLocaliser">Localiser</string>
 
     <string name="Switch">Anti-Arrachement</string>
