@@ -97,24 +97,6 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
         showLocation();
     }
 
-
-    //TODO Get position of the device when receiving an SMS - Poke Matthieu
-
-    /**
-     * Look for the current device's location and returns it
-     *
-     * @return Location
-     */
-    public Location getMyLocation() {
-        Context context = getApplicationContext();
-
-        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        String locationProvider = LocationManager.NETWORK_PROVIDER;
-        Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
-
-        return lastKnownLocation;
-    }
-
     /**
      * Add a marker on the map
      **/
