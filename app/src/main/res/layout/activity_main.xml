@@ -81,6 +81,13 @@
                     android:layout_gravity="center_horizontal"
                     android:text="@string/buttonTextMessage" />
 
+                <Button
+                    android:id="@+id/buttonLocaliser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/buttonLocaliser" />
+
             </LinearLayout>
 
             <Switch

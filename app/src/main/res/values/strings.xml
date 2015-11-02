@@ -9,6 +9,7 @@
     <string name="buttonRing">Ring</string>
     <string name="buttonVocalMessage">Vocal</string>
     <string name="buttonTextMessage">Message</string>
+    <string name="buttonLocaliser">Localiser</string>
 
     <string name="Switch">Anti-Arrachement</string>
     <string name="message_alerte">Le vol... C\'est Mal</string>

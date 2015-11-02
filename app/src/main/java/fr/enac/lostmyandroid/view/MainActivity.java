@@ -19,11 +19,12 @@ import java.util.SortedMap;
 import fr.enac.lostmyandroid.R;
 import fr.enac.lostmyandroid.utilities.PopupMessage;
 
-public class MainActivity extends AppCompatActivity implements PopupMessage.NoticeDialogListener{
+public class MainActivity extends AppCompatActivity implements PopupMessage.NoticeDialogListener {
     private EditText number;
     private Button ringIt;
     private Button vocalMessage;
     private Button textMessage;
+    private Button localiser;
 
     private Switch numero;
     private SmsManager smsManager;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
     public static final String CODE_RING = "RING";
     public static final String CODE_TEXT = "TEXT";
     public static final String CODE_VOCAL = "VOCAL";
+    public static final String CODE_LOCALISER = "LOCATION";
 
     EditText message;
     PopupMessage pm;
@@ -51,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,16 +66,14 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
         vocalMessage = (Button) findViewById(R.id.buttonVocalMessage);
         textMessage = (Button) findViewById(R.id.buttonTextMessage);
         antiArrachement = (Switch) findViewById(R.id.switchArrachement);
+        localiser = (Button) findViewById(R.id.buttonLocaliser);
 
         ringIt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (numeroValide()) {
+                if (numeroValide())
                     smsManager.sendTextMessage(getNumero(), null, CODE_RING, null, null);
-                }
-                else
-                    Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -82,11 +81,10 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
             @Override
             public void onClick(View v) {
                 if (numeroValide()) {
-                    /*PopupMessage*/ pm = new PopupMessage();
+                    /*PopupMessage*/
+                    pm = new PopupMessage();
                     pm.show(getFragmentManager(), "");
                 }
-                else
-                    Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -97,12 +95,16 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
                     smsManager.sendTextMessage(getNumero(), null, CODE_VOCAL, null, null);
 
                     // FIXME Test maps -> Requires GOOGLE PLAY SERVICE INSTALLED
-                    Intent intent3 = new Intent(getApplicationContext(), MapsActivity.class);
-                    intent3.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    getApplicationContext().startActivity(intent3);
+
                 }
-                else
-                    Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        localiser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (numeroValide())
+                    smsManager.sendTextMessage(getNumero(), null, CODE_LOCALISER, null, null);
             }
         });
 
@@ -110,7 +112,11 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
 
     private boolean numeroValide() {
         String numero = number.getText().toString();
-        return numero.length() == 10;
+        if (numero.length() == 10) {
+            Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
+            return true;
+        } else
+            return false;
     }
 
     private String getNumero() {
@@ -133,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
             return true;
         }
 
