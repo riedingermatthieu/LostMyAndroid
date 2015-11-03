@@ -1,11 +1,9 @@
 package fr.enac.lostmyandroid.utilities;
 
 
-import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -14,9 +12,7 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
-import android.widget.Toast;
 
-import fr.enac.lostmyandroid.R;
 import fr.enac.lostmyandroid.view.AlertAlarmActivity;
 import fr.enac.lostmyandroid.view.MainActivity;
 import fr.enac.lostmyandroid.view.MapsActivity;
@@ -86,7 +82,6 @@ public class MyReceiver extends BroadcastReceiver {
                 public void onProviderDisabled(String provider) {
                 }
             };
-
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
         } else if (smsBody.startsWith(RETURN_LOCATION)) {
@@ -94,8 +89,15 @@ public class MyReceiver extends BroadcastReceiver {
             intent4.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             String result = smsBody.substring(RETURN_LOCATION.length());
             String location[] = result.split(",");
-            intent4.putExtra("longitude", Float.valueOf(location[0]));
-            intent4.putExtra("latitude", Float.valueOf(location[1]));
+
+            double longitude = Double.valueOf(location[0]);
+            double latitude = Double.valueOf(location[1]);
+
+            Log.d("LatLng", "Avant: " + longitude);
+            Log.d("LatLng", "Avant: " + latitude);
+
+            intent4.putExtra("longitude", longitude);
+            intent4.putExtra("latitude", latitude);
             myContext.startActivity(intent4);
         }
     }
