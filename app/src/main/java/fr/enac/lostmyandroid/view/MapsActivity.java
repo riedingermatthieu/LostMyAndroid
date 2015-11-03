@@ -41,8 +41,8 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        longitude = savedInstanceState.getFloat("longitude");
-        latitude = savedInstanceState.getFloat("latitude");
+        getIntent().getFloatExtra("longitude", longitude);
+        getIntent().getFloatExtra("latitude", latitude);
 
         setContentView(R.layout.activity_maps);
         buildGoogleApiClient();

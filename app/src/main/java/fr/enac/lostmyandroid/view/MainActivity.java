@@ -173,11 +173,12 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
 
     private boolean numeroValide() {
         String numero = number.getText().toString();
-        if (numero.length() == 10) {
-            Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
+        if (numero.length() == 10)
             return true;
-        } else
+        else {
+            Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
             return false;
+        }
     }
 
     private String getNumero() {
