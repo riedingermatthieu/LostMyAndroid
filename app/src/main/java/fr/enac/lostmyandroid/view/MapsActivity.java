@@ -32,8 +32,8 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private GoogleApiClient mGoogleApiClient;
-    private float latitude;
-    private float longitude;
+    private double latitude;
+    private double longitude;
 
     public static final String TAG = MapsActivity.class.getSimpleName();
 
@@ -41,8 +41,11 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getIntent().getFloatExtra("longitude", longitude);
-        getIntent().getFloatExtra("latitude", latitude);
+        longitude = getIntent().getDoubleExtra("longitude", longitude);
+        latitude = getIntent().getDoubleExtra("latitude", latitude);
+
+        Log.d("LatLng", "Long:" + longitude);
+        Log.d("LatLng", "Lat:" + latitude);
 
         setContentView(R.layout.activity_maps);
         buildGoogleApiClient();

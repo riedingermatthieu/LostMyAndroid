@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import fr.enac.lostmyandroid.R;
 
@@ -27,6 +28,13 @@ public class AlertAlarmActivity extends AppCompatActivity {
 
         //audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
           //      audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+        String message = getIntent().getStringExtra("message");
+
+        TextView textView = (TextView) findViewById(R.id.TextView_message_alerte);
+
+        if (message != null && !message.isEmpty())
+            textView.setText(message);
 
         playSound(R.raw.alarm);
 
