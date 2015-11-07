@@ -24,6 +24,7 @@ import android.widget.Toast;
 import java.util.SortedMap;
 
 import fr.enac.lostmyandroid.R;
+import fr.enac.lostmyandroid.utilities.MyReceiver;
 import fr.enac.lostmyandroid.utilities.PopupMessage;
 
 public class MainActivity extends AppCompatActivity implements PopupMessage.NoticeDialogListener{
@@ -128,7 +129,13 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
             @Override
             public void onClick(View v) {
                 if (numeroValide())
+                {
                     smsManager.sendTextMessage(getNumero(), null, CODE_RING, null, null);
+
+                    // FIXME for tests on tablet purpose
+                    MyReceiver.startRingAlarm(getApplicationContext());
+                    //finish();
+                }
             }
         });
 
@@ -169,7 +176,9 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
             }
         });
 
+
     }
+
 
     private boolean numeroValide() {
         String numero = number.getText().toString();
@@ -206,4 +215,15 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Toast.makeText(getApplicationContext(),"Back pressed in main", Toast.LENGTH_LONG).show();
+
+    }
+
+
+
+
 }

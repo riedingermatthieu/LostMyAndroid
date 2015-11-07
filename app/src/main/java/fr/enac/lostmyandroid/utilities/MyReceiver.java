@@ -50,22 +50,29 @@ public class MyReceiver extends BroadcastReceiver {
 
     private void traiteMessage(String smsBody) {
 
-        if (smsBody.startsWith(MainActivity.CODE_RING)) {
+        if (smsBody.startsWith(MainActivity.CODE_RING))
+        {
             Intent intent = new Intent(myContext, AlertAlarmActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             myContext.startActivity(intent);
 
-        } else if (smsBody.startsWith(MainActivity.CODE_TEXT)) {
+        }
+        else if (smsBody.startsWith(MainActivity.CODE_TEXT))
+        {
             Intent intent2 = new Intent(myContext, AlertAlarmActivity.class);
             intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             String message = smsBody.substring(MainActivity.CODE_TEXT.length());
             intent2.putExtra("message", message);
             myContext.startActivity(intent2);
 
-        } else if (smsBody.startsWith(MainActivity.CODE_VOCAL)) {
+        }
+        else if (smsBody.startsWith(MainActivity.CODE_VOCAL))
+        {
             // TODO lancer Activité Vocal
 
-        } else if (smsBody.startsWith(MainActivity.CODE_LOCALISER)) {
+        }
+        else if (smsBody.startsWith(MainActivity.CODE_LOCALISER))
+        {
             locationManager = (LocationManager) myContext.getSystemService(Context.LOCATION_SERVICE);
             locationListener = new LocationListener() {
                 public void onLocationChanged(Location location) {
@@ -84,7 +91,9 @@ public class MyReceiver extends BroadcastReceiver {
             };
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
-        } else if (smsBody.startsWith(RETURN_LOCATION)) {
+        }
+        else if (smsBody.startsWith(RETURN_LOCATION))
+        {
             Intent intent4 = new Intent(myContext, MapsActivity.class);
             intent4.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             String result = smsBody.substring(RETURN_LOCATION.length());
@@ -100,6 +109,13 @@ public class MyReceiver extends BroadcastReceiver {
             intent4.putExtra("latitude", latitude);
             myContext.startActivity(intent4);
         }
+    }
+
+    // For test purpose on tablet that doesn't have sms abilities
+    public static void startRingAlarm(Context cont) {
+        Intent intent = new Intent(cont, AlertAlarmActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        cont.startActivity(intent);
     }
 
     private void removeUpdates() {
