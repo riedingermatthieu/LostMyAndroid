@@ -11,8 +11,8 @@
     <string name="buttonTextMessage">Message texte</string>
     <string name="buttonLocaliser">Localiser</string>
 
-    <string name="Switch">Anti-Arrachement</string>
-    <string name="message_alerte">Le vol... C\'est Mal</string>
+    <string name="Switch">Anti-Vol</string>
+    <string name="message_alerte">Alerte vol</string>
 
     <string name="messageHint">Entrez votre message ...</string>
     <string name="envoyer">Envoyer</string>

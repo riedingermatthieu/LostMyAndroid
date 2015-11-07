@@ -6,13 +6,9 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.provider.Telephony;
-import android.telephony.SmsManager;
 import android.view.LayoutInflater;
-import android.widget.EditText;
 
 import fr.enac.lostmyandroid.R;
-import fr.enac.lostmyandroid.view.MainActivity;
 
 /**
  * Created by Amine on 24/10/2015.
