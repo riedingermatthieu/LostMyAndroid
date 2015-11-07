@@ -2,15 +2,15 @@
 
     <!-- These settings headers are only used on tablets. -->
 
-    <header android:fragment="fr.enac.lostmyandroid.view.SettingsActivity$GeneralPreferenceFragment"
+    <header android:fragment="fr.enac.lostmyandroid.views.SettingsActivity$GeneralPreferenceFragment"
         android:title="@string/pref_header_general" />
 
     <header
-        android:fragment="fr.enac.lostmyandroid.view.SettingsActivity$NotificationPreferenceFragment"
+        android:fragment="fr.enac.lostmyandroid.views.SettingsActivity$NotificationPreferenceFragment"
         android:title="@string/pref_header_notifications" />
 
     <header
-        android:fragment="fr.enac.lostmyandroid.view.SettingsActivity$DataSyncPreferenceFragment"
+        android:fragment="fr.enac.lostmyandroid.views.SettingsActivity$DataSyncPreferenceFragment"
         android:title="@string/pref_header_data_sync" />
 
 </preference-headers>

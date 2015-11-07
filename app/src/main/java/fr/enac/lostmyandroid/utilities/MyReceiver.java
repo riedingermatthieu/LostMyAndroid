@@ -13,9 +13,9 @@ import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
-import fr.enac.lostmyandroid.view.AlertAlarmActivity;
-import fr.enac.lostmyandroid.view.MainActivity;
-import fr.enac.lostmyandroid.view.MapsActivity;
+import fr.enac.lostmyandroid.views.AlertAlarmActivity;
+import fr.enac.lostmyandroid.views.MainActivity;
+import fr.enac.lostmyandroid.views.MapsActivity;
 
 public class MyReceiver extends BroadcastReceiver {
 
@@ -58,7 +58,7 @@ public class MyReceiver extends BroadcastReceiver {
         } else if (smsBody.startsWith(MainActivity.CODE_TEXT)) {
             Intent intent2 = new Intent(myContext, AlertAlarmActivity.class);
             intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            String message = smsBody.substring(MainActivity.CODE_TEXT.length());
+            String message = smsBody.substring(MainActivity.CODE_TEXT.length()+2);
             intent2.putExtra("message", message);
             myContext.startActivity(intent2);
 
