@@ -17,56 +17,16 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import fr.enac.lostmyandroid.Controllers.MainActivityController;
 import fr.enac.lostmyandroid.R;
 import fr.enac.lostmyandroid.utilities.MyReceiver;
 import fr.enac.lostmyandroid.utilities.PopupMessage;
 import fr.enac.lostmyandroid.utilities.VibrationSensor;
 
-public class MainActivity extends AppCompatActivity implements PopupMessage.NoticeDialogListener {
+public class MainActivity extends AppCompatActivity implements PopupMessage.NoticeDialogListener{
 
-    //View Data
-    private EditText number;
-    private Button ringIt;
-    private Button vocalMessage;
-    private Switch antiArrachement;
-    private Button textMessage;
-    private Button localiser;
+    private MainActivityController myController;
 
-    private Switch numero;
-
-    public static final String CODE_RING = "RING";
-    public static final String CODE_TEXT = "TEXT";
-    public static final String CODE_VOCAL = "VOCAL";
-    public static final String CODE_LOCALISER = "LOCATION";
-
-    private SmsManager smsManager;
-
-    private EditText message;
-    private PopupMessage pm;
-
-    // Shake detection Data
-    private SensorManager mSensorManager;
-
-    private final SensorEventListener mSensorListener = new VibrationSensor(getApplicationContext());
-
-    public void initSensor() {
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-    }
-
-    public void abortSensor() {
-        mSensorManager.unregisterListener(mSensorListener);
-    }
-
-    // Pop-up Send message
-    @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
-
-        message = (EditText) dialog.getDialog().findViewById(R.id.message);
-        String contenuMessage = message.getText().toString();
-
-        smsManager.sendTextMessage(getNumero(), null, CODE_TEXT + ": " + contenuMessage, null, null);
-    }
 
 
     @Override
@@ -74,83 +34,33 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        smsManager = SmsManager.getDefault();
+        // Instanciation Controlleur
+        myController = new MainActivityController(this);
 
-        // Loading components
-        number = (EditText) findViewById(R.id.editNumero);
-        ringIt = (Button) findViewById(R.id.buttonRing);
-        vocalMessage = (Button) findViewById(R.id.buttonVocalMessage);
-        textMessage = (Button) findViewById(R.id.buttonTextMessage);
-        antiArrachement = (Switch) findViewById(R.id.switchArrachement);
-        localiser = (Button) findViewById(R.id.buttonLocaliser);
-
-        ringIt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (numeroValide())
-                {
-                    smsManager.sendTextMessage(getNumero(), null, CODE_RING, null, null);
-
-                    // FIXME for tests on tablet purpose
-                    MyReceiver.startRingAlarm(getApplicationContext());
-                    //finish();
-                }
-            }
-        });
-
-        textMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (numeroValide()) {
-                    pm = new PopupMessage();
-                    pm.show(getFragmentManager(), "");
-                }
-            }
-        });
-
-        vocalMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (numeroValide()) {
-                    smsManager.sendTextMessage(getNumero(), null, CODE_VOCAL, null, null);
-                }
-            }
-        });
-
-        antiArrachement.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                    initSensor();
-                else
-                    abortSensor();
-            }
-        });
-
-        localiser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (numeroValide())
-                    smsManager.sendTextMessage(getNumero(), null, CODE_LOCALISER, null, null);
-            }
-        });
-
+        // Enregistrement des Callbacks
+        myController.setRingListener();
+        myController.setVocalListener();
+        myController.setOncheckSwitchListener();
+        myController.setLocaliserListener();
+        myController.setTextMessageListener();
 
     }
 
 
-    private boolean numeroValide() {
-        String numero = number.getText().toString();
-        if (numero.length() == 10)
-            return true;
-        else {
-            Toast.makeText(getApplicationContext(), "Le numéro entré n'est pas valide", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-    }
+    /**
+     *  Implémentation de l'interface de dialogue (Pop Up Message)
+     *  @param dialog le fragment de dialogue qui s'affichera
+     *  @see class PopUpMessage
+     */
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
 
-    private String getNumero() {
-        return number.getText().toString();
+        EditText message = (EditText) dialog.getDialog().findViewById(R.id.message);
+        String contenuMessage = message.getText().toString();
+        EditText number = (EditText) findViewById(R.id.editNumero);
+
+        myController.message(number.getText().toString(), contenuMessage);
+
     }
 
     @Override
@@ -175,14 +85,17 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
         return super.onOptionsItemSelected(item);
     }
 
+
+
+
+
+    // FIXME le faire pour l'activity de l'alarme
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
         Toast.makeText(getApplicationContext(),"Back pressed in main", Toast.LENGTH_LONG).show();
 
     }
-
-
 
 
 }

@@ -13,6 +13,7 @@ import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
+import fr.enac.lostmyandroid.Controllers.MainActivityController;
 import fr.enac.lostmyandroid.views.AlertAlarmActivity;
 import fr.enac.lostmyandroid.views.MainActivity;
 import fr.enac.lostmyandroid.views.MapsActivity;
@@ -50,28 +51,28 @@ public class MyReceiver extends BroadcastReceiver {
 
     private void traiteMessage(String smsBody) {
 
-        if (smsBody.startsWith(MainActivity.CODE_RING))
+        if (smsBody.startsWith(MainActivityController.CODE_RING))
         {
             Intent intent = new Intent(myContext, AlertAlarmActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             myContext.startActivity(intent);
 
         }
-        else if (smsBody.startsWith(MainActivity.CODE_TEXT))
+        else if (smsBody.startsWith(MainActivityController.CODE_TEXT))
         {
             Intent intent2 = new Intent(myContext, AlertAlarmActivity.class);
             intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            String message = smsBody.substring(MainActivity.CODE_TEXT.length()+2);
+            String message = smsBody.substring(MainActivityController.CODE_TEXT.length()+2);
             intent2.putExtra("message", message);
             myContext.startActivity(intent2);
 
         }
-        else if (smsBody.startsWith(MainActivity.CODE_VOCAL))
+        else if (smsBody.startsWith(MainActivityController.CODE_VOCAL))
         {
             // TODO lancer Activité Vocal
 
         }
-        else if (smsBody.startsWith(MainActivity.CODE_LOCALISER))
+        else if (smsBody.startsWith(MainActivityController.CODE_LOCALISER))
         {
             locationManager = (LocationManager) myContext.getSystemService(Context.LOCATION_SERVICE);
             locationListener = new LocationListener() {
