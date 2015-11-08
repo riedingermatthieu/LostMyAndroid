@@ -23,6 +23,11 @@ import fr.enac.lostmyandroid.utilities.MyReceiver;
 import fr.enac.lostmyandroid.utilities.PopupMessage;
 import fr.enac.lostmyandroid.utilities.VibrationSensor;
 
+/**
+ * Activity principale de l'application. Elle présente les 4 différentes fonctionnalités
+ * que l'utilisateur peut lancer : <i>Sonner, Envoyer un message vocal, Envoyer un message
+ * texte, Localiser et afficher sur un Map.</i>
+ */
 public class MainActivity extends AppCompatActivity implements PopupMessage.NoticeDialogListener{
 
     private MainActivityController myController;
