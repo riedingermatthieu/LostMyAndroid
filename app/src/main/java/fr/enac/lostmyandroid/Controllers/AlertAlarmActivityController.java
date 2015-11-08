@@ -1,14 +1,19 @@
 package fr.enac.lostmyandroid.Controllers;
 
 import android.app.Activity;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fr.enac.lostmyandroid.R;
+import fr.enac.lostmyandroid.utilities.MyAdminReceiver;
 
 /**
  * Created by Amine on 08/11/2015.
@@ -21,6 +26,13 @@ public class AlertAlarmActivityController {
     private Button stopButton;
     private AudioManager audioManager;
 
+
+    // Administration Data
+    private static final int ADMIN_INTENT = 15;
+    private static final String description = "Sample Administrator description";
+    private DevicePolicyManager mDevicePolicyManager;
+    private ComponentName mComponentName;
+
     public AlertAlarmActivityController(Activity mActivity, String msg) {
         myActivity = mActivity;
         message = msg;
@@ -29,6 +41,9 @@ public class AlertAlarmActivityController {
         stopButton = (Button) myActivity.findViewById(R.id.button);
 
         registerStopButtonListener();
+        initAdminComponents();
+        enableAdminMode();
+
     }
 
     public void registerStopButtonListener() {
@@ -40,6 +55,11 @@ public class AlertAlarmActivityController {
                 mPlayer.stop();
                 myActivity.finish();
 
+                /*
+                Intent intent = new Intent(myActivity.getApplicationContext(), LockActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                myActivity.getApplicationContext().startActivity(intent);
+*/
             }
         });
     }
@@ -59,6 +79,7 @@ public class AlertAlarmActivityController {
     }
 
     public void stopSound() {
+        lockPhone();
         mPlayer.stop();
     }
 
@@ -66,5 +87,32 @@ public class AlertAlarmActivityController {
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
                 audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
     }
+
+
+    /* Administration */
+
+    public void initAdminComponents() {
+        mDevicePolicyManager = (DevicePolicyManager)myActivity.getSystemService(
+                Context.DEVICE_POLICY_SERVICE);
+        mComponentName = new ComponentName(myActivity, MyAdminReceiver.class);
+    }
+
+    public void enableAdminMode() {
+        Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+        intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mComponentName);
+        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,description);
+        myActivity.startActivityForResult(intent, ADMIN_INTENT);
+    }
+
+    public void lockPhone() {
+        boolean isAdmin = mDevicePolicyManager.isAdminActive(mComponentName);
+        if (isAdmin) {
+            mDevicePolicyManager.lockNow();
+        }else{
+            Toast.makeText(myActivity.getApplicationContext(), "Not Registered as admin", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
 }

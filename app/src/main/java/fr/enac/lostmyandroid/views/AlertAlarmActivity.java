@@ -1,7 +1,9 @@
 package fr.enac.lostmyandroid.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import fr.enac.lostmyandroid.Controllers.AlertAlarmActivityController;
 import fr.enac.lostmyandroid.R;
@@ -11,6 +13,7 @@ public class AlertAlarmActivity extends AppCompatActivity {
     private Integer lockCode; // Pour le code de sécurité TODO à revoir
     //private MediaPlayer mPlayer = null;
     private AlertAlarmActivityController myController;
+    private static final int ADMIN_INTENT = 15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,15 @@ public class AlertAlarmActivity extends AppCompatActivity {
         myController.stopSound();
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == ADMIN_INTENT) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(getApplicationContext(), "Registered As Admin", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getApplicationContext(), "Failed to register as Admin", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
 }
