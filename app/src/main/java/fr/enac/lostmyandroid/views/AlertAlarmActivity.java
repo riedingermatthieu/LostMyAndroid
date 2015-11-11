@@ -8,6 +8,9 @@ import android.widget.Toast;
 import fr.enac.lostmyandroid.Controllers.AlertAlarmActivityController;
 import fr.enac.lostmyandroid.R;
 
+/**
+ * Activity qui déclenche l'alarme sonore.
+ */
 public class AlertAlarmActivity extends AppCompatActivity {
 
     private AlertAlarmActivityController myController;

@@ -147,19 +147,34 @@ public class MainActivityController {
 
     /* Les fonctionnalités */
 
-
+    /**
+     * Envoyer un message avec code RING
+     * @param numero Le destinataire
+     */
     public void ring(String numero) {
         smsManager.sendTextMessage(numero, null, CODE_RING, null, null);
     }
 
+    /**
+     * Envoyer un message avec code VOCAL
+     * @param numero Le destinataire
+     */
     public void vocal(String numero) {
         smsManager.sendTextMessage(numero, null, CODE_VOCAL, null, null);
     }
 
+    /**
+     * Envoyer un message avec code LOCATION
+     * @param numero Le destinataire
+     */
     public void localize(String numero) {
         smsManager.sendTextMessage(numero, null, CODE_LOCALISER, null, null);
     }
 
+    /**
+     * Envoyer un message avec code TEXT
+     * @param numero Le destinataire
+     */
     public void message(String numero, String contenuMessage) {
         smsManager.sendTextMessage(numero, null, CODE_TEXT + ": " + contenuMessage, null, null);
         Log.e("ERROR", "message sent");
@@ -168,6 +183,10 @@ public class MainActivityController {
 
     /* Utilitaires */
 
+    /**
+     * Test si le numéro mesure 10 chiffres
+     * @return boolean Vrai ou Faux
+     */
     private boolean numeroValide() {
         String numero = number.getText().toString();
         if (numero.length() == 10)
@@ -178,6 +197,9 @@ public class MainActivityController {
         }
     }
 
+    /**
+     * Initialise le sensors accéléromètres
+     */
     public void initSensor() {
         mSensorListener = new VibrationSensor(myActivity.getApplicationContext());
 
@@ -185,6 +207,9 @@ public class MainActivityController {
         mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
     }
 
+    /**
+     * Désenregistrer les sensors pour ne pas perdre de batterie
+     */
     public void abortSensor() {
         mSensorManager.unregisterListener(mSensorListener);
     }
