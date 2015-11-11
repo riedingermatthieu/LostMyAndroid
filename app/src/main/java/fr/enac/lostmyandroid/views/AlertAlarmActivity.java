@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import fr.enac.lostmyandroid.Controllers.AlertAlarmActivityController;
+import fr.enac.lostmyandroid.controllers.AlertAlarmActivityController;
 import fr.enac.lostmyandroid.R;
 
 /**

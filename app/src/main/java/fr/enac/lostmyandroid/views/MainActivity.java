@@ -2,35 +2,21 @@ package fr.enac.lostmyandroid.views;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Path;
-import android.hardware.Sensor;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.Toast;
 
-import java.io.File;
-
-import fr.enac.lostmyandroid.Controllers.MainActivityController;
+import fr.enac.lostmyandroid.controllers.MainActivityController;
 import fr.enac.lostmyandroid.R;
-import fr.enac.lostmyandroid.utilities.MyReceiver;
 import fr.enac.lostmyandroid.utilities.PopupMessage;
-import fr.enac.lostmyandroid.utilities.VibrationSensor;
 
 /**
  * Activity principale de l'application. Elle présente les 4 différentes fonctionnalités

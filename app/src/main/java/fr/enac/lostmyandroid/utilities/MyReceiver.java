@@ -13,9 +13,8 @@ import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
-import fr.enac.lostmyandroid.Controllers.MainActivityController;
+import fr.enac.lostmyandroid.controllers.MainActivityController;
 import fr.enac.lostmyandroid.views.AlertAlarmActivity;
-import fr.enac.lostmyandroid.views.MainActivity;
 import fr.enac.lostmyandroid.views.MapsActivity;
 import fr.enac.lostmyandroid.views.VocalMessageActivity;
 

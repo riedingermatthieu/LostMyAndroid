@@ -1,16 +1,11 @@
 package fr.enac.lostmyandroid.views;
 
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import java.io.File;
-
-import fr.enac.lostmyandroid.Controllers.AlertAlarmActivityController;
 import fr.enac.lostmyandroid.R;
 
 public class VocalMessageActivity extends AppCompatActivity {

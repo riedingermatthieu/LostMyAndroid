@@ -92,7 +92,7 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
      **/
     public void showLocation() {
         mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,
-                longitude)).title("Position"));
+                longitude)).title("Position de l'appareil perdu"));
         //Build camera position
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(new LatLng(latitude,
