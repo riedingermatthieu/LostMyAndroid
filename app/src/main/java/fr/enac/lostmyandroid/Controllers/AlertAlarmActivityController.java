@@ -28,7 +28,7 @@ public class AlertAlarmActivityController {
 
 
     // Administration Data
-    private static final int ADMIN_INTENT = 15;
+    public static final int ADMIN_INTENT = 15;
     private static final String description = "Sample Administrator description";
     private DevicePolicyManager mDevicePolicyManager;
     private ComponentName mComponentName;
@@ -45,29 +45,34 @@ public class AlertAlarmActivityController {
         enableAdminMode();
     }
 
+    /**
+     * Enregistre le callback sur le bouton arrêter
+     */
     public void registerStopButtonListener() {
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO envoyer vers le lockscreen, s'il Unlock on arrête l'alarme
-
                 stopSound();
-                // myActivity.finish();
 
-                /*
-                Intent intent = new Intent(myActivity.getApplicationContext(), LockActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                myActivity.getApplicationContext().startActivity(intent);
-*/
+
+
             }
         });
     }
 
+    /**
+     * Affiche un message personnalisé ou par défaut
+     */
     public void showMessage() {
         if (message != null && !message.isEmpty())
             textView.setText(message);
     }
 
+    /**
+     * Lance l'alarme sonore
+     * @param resId ID de la ressource sonore
+     */
     public void playSound(int resId) {
         if (mPlayer != null) {
             mPlayer.stop();
@@ -82,6 +87,9 @@ public class AlertAlarmActivityController {
         lockPhone();
     }
 
+    /**
+     * Met le niveau du son au maximum
+     */
     public void putMaxSound() {
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
                 audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -90,12 +98,18 @@ public class AlertAlarmActivityController {
 
     /* Administration */
 
+    /**
+     * Initialise le DevicePolicyManager et cherche la classe AdminReceiver
+     */
     public void initAdminComponents() {
         mDevicePolicyManager = (DevicePolicyManager)myActivity.getSystemService(
                 Context.DEVICE_POLICY_SERVICE);
         mComponentName = new ComponentName(myActivity, MyAdminReceiver.class);
     }
 
+    /**
+     * Active le mode administration du téléphone
+     */
     public void enableAdminMode() {
         Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
         intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mComponentName);
@@ -103,6 +117,9 @@ public class AlertAlarmActivityController {
         myActivity.startActivityForResult(intent, ADMIN_INTENT);
     }
 
+    /**
+     * Vérrouille le téléphone
+     */
     public void lockPhone() {
         boolean isAdmin = mDevicePolicyManager.isAdminActive(mComponentName);
         if (isAdmin) {
