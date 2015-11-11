@@ -20,6 +20,9 @@ import fr.enac.lostmyandroid.utilities.MyReceiver;
 import fr.enac.lostmyandroid.utilities.PopupMessage;
 import fr.enac.lostmyandroid.utilities.VibrationSensor;
 
+/**
+ * Contrôleur de la vue principale de l'application
+ */
 public class MainActivityController {
 
     // Receiver Codes
@@ -48,7 +51,10 @@ public class MainActivityController {
 
 
 
-
+    /**
+     * Constructeur
+     * @param main L'activité qu'il contrôle : MainActivity
+     */
     public MainActivityController(Activity main) {
         myActivity = main;
         smsManager = SmsManager.getDefault();
@@ -63,6 +69,9 @@ public class MainActivityController {
 
     /* L'enregistrement des callbacks */
 
+    /**
+     * Enregistre le callback sur le bouton faire sonner
+     */
     public void setRingListener() {
         ringIt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +88,9 @@ public class MainActivityController {
         });
     }
 
+    /**
+     * Enregistre le callback sur le message vocal
+     */
     public void setVocalListener() {
         vocalMessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +101,9 @@ public class MainActivityController {
         });
     }
 
+    /**
+     * Enregistre le callback sur le switch antivol
+     */
     public void setOncheckSwitchListener() {
         antiArrachement.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -100,7 +115,9 @@ public class MainActivityController {
             }
         });
     }
-
+    /**
+     * Enregistre le callback sur le bouton Localiser
+     */
     public void setLocaliserListener() {
         localiser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +129,9 @@ public class MainActivityController {
 
     }
 
+    /**
+     * Enregistre le callback sur le bouton envoyer message
+     */
     public void setTextMessageListener() {
         textMessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,20 +144,37 @@ public class MainActivityController {
         });
     }
 
+
     /* Les fonctionnalités */
 
+    /**
+     * Envoyer un message avec code RING
+     * @param numero Le destinataire
+     */
     public void ring(String numero) {
         smsManager.sendTextMessage(numero, null, CODE_RING, null, null);
     }
 
+    /**
+     * Envoyer un message avec code VOCAL
+     * @param numero Le destinataire
+     */
     public void vocal(String numero) {
         smsManager.sendTextMessage(numero, null, CODE_VOCAL, null, null);
     }
 
+    /**
+     * Envoyer un message avec code LOCATION
+     * @param numero Le destinataire
+     */
     public void localize(String numero) {
         smsManager.sendTextMessage(numero, null, CODE_LOCALISER, null, null);
     }
 
+    /**
+     * Envoyer un message avec code TEXT
+     * @param numero Le destinataire
+     */
     public void message(String numero, String contenuMessage) {
         smsManager.sendTextMessage(numero, null, CODE_TEXT + ": " + contenuMessage, null, null);
         Log.e("ERROR", "message sent");
@@ -146,6 +183,10 @@ public class MainActivityController {
 
     /* Utilitaires */
 
+    /**
+     * Test si le numéro mesure 10 chiffres
+     * @return boolean Vrai ou Faux
+     */
     private boolean numeroValide() {
         String numero = number.getText().toString();
         if (numero.length() == 10)
@@ -156,6 +197,9 @@ public class MainActivityController {
         }
     }
 
+    /**
+     * Initialise le sensors accéléromètres
+     */
     public void initSensor() {
         mSensorListener = new VibrationSensor(myActivity.getApplicationContext());
 
@@ -163,6 +207,9 @@ public class MainActivityController {
         mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
     }
 
+    /**
+     * Désenregistrer les sensors pour ne pas perdre de batterie
+     */
     public void abortSensor() {
         mSensorManager.unregisterListener(mSensorListener);
     }

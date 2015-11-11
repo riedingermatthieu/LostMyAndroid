@@ -8,12 +8,12 @@ import android.widget.Toast;
 import fr.enac.lostmyandroid.Controllers.AlertAlarmActivityController;
 import fr.enac.lostmyandroid.R;
 
+/**
+ * Activity qui déclenche l'alarme sonore.
+ */
 public class AlertAlarmActivity extends AppCompatActivity {
 
-    private Integer lockCode; // Pour le code de sécurité TODO à revoir
-    //private MediaPlayer mPlayer = null;
     private AlertAlarmActivityController myController;
-    private static final int ADMIN_INTENT = 15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class AlertAlarmActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == ADMIN_INTENT) {
+        if (requestCode == AlertAlarmActivityController.ADMIN_INTENT) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(getApplicationContext(), "Registered As Admin", Toast.LENGTH_SHORT).show();
             } else{
