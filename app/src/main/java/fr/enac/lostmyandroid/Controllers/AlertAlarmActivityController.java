@@ -15,9 +15,7 @@ import android.widget.Toast;
 import fr.enac.lostmyandroid.R;
 import fr.enac.lostmyandroid.utilities.MyAdminReceiver;
 
-/**
- * Created by Amine on 08/11/2015.
- */
+
 public class AlertAlarmActivityController {
     private MediaPlayer mPlayer = null;
     private Activity myActivity;
