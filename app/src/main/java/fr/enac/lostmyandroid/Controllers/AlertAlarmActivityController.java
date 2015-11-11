@@ -31,6 +31,11 @@ public class AlertAlarmActivityController {
     private DevicePolicyManager mDevicePolicyManager;
     private ComponentName mComponentName;
 
+    /**
+     * Constructeur
+     * @param mActivity L'Activité qu'il contrôle : AlertAlarmActivity
+     * @param msg Le message personnalisé envoyé récupéré par message
+     */
     public AlertAlarmActivityController(Activity mActivity, String msg) {
         myActivity = mActivity;
         message = msg;
@@ -52,7 +57,6 @@ public class AlertAlarmActivityController {
             public void onClick(View v) {
                 // TODO envoyer vers le lockscreen, s'il Unlock on arrête l'alarme
                 stopSound();
-
 
 
             }
