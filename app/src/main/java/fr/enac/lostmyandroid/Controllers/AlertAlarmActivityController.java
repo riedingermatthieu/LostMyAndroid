@@ -15,7 +15,9 @@ import android.widget.Toast;
 import fr.enac.lostmyandroid.R;
 import fr.enac.lostmyandroid.utilities.MyAdminReceiver;
 
-
+/**
+ * Created by Amine on 08/11/2015.
+ */
 public class AlertAlarmActivityController {
     private MediaPlayer mPlayer = null;
     private Activity myActivity;
@@ -26,7 +28,7 @@ public class AlertAlarmActivityController {
 
 
     // Administration Data
-    public static final int ADMIN_INTENT = 15;
+    private static final int ADMIN_INTENT = 15;
     private static final String description = "Sample Administrator description";
     private DevicePolicyManager mDevicePolicyManager;
     private ComponentName mComponentName;
@@ -41,7 +43,6 @@ public class AlertAlarmActivityController {
         registerStopButtonListener();
         initAdminComponents();
         enableAdminMode();
-
     }
 
     public void registerStopButtonListener() {
@@ -49,8 +50,15 @@ public class AlertAlarmActivityController {
             @Override
             public void onClick(View v) {
                 // TODO envoyer vers le lockscreen, s'il Unlock on arrête l'alarme
-                mPlayer.stop();
-                myActivity.finish();
+
+                stopSound();
+                // myActivity.finish();
+
+                /*
+                Intent intent = new Intent(myActivity.getApplicationContext(), LockActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                myActivity.getApplicationContext().startActivity(intent);
+*/
             }
         });
     }
@@ -70,14 +78,15 @@ public class AlertAlarmActivityController {
     }
 
     public void stopSound() {
-        lockPhone();
         mPlayer.stop();
+        lockPhone();
     }
 
     public void putMaxSound() {
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
                 audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
     }
+
 
     /* Administration */
 
@@ -102,7 +111,4 @@ public class AlertAlarmActivityController {
             Toast.makeText(myActivity.getApplicationContext(), "Not Registered as admin", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
 }

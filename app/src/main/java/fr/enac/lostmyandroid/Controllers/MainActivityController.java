@@ -72,7 +72,7 @@ public class MainActivityController {
                     ring(number.getText().toString());
 
                     // FIXME for tests on tablet purpose
-                    MyReceiver.startRingAlarm(myActivity.getApplicationContext());
+                    // MyReceiver.startRingAlarm(myActivity.getApplicationContext());
 
                 }
             }

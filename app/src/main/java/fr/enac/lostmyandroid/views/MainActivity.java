@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
 
     private MainActivityController myController;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
         myController.setTextMessageListener();
 
     }
-
 
     /**
      *  Implémentation de l'interface de dialogue (Pop Up Message)
@@ -90,16 +87,11 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-
     // FIXME le faire pour l'activity de l'alarme
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
         Toast.makeText(getApplicationContext(),"Back pressed in main", Toast.LENGTH_LONG).show();
-
     }
 
 
