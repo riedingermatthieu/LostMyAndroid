@@ -17,6 +17,7 @@ import fr.enac.lostmyandroid.Controllers.MainActivityController;
 import fr.enac.lostmyandroid.views.AlertAlarmActivity;
 import fr.enac.lostmyandroid.views.MainActivity;
 import fr.enac.lostmyandroid.views.MapsActivity;
+import fr.enac.lostmyandroid.views.VocalMessageActivity;
 
 public class MyReceiver extends BroadcastReceiver {
 
@@ -69,8 +70,9 @@ public class MyReceiver extends BroadcastReceiver {
         }
         else if (smsBody.startsWith(MainActivityController.CODE_VOCAL))
         {
-            // TODO lancer Activité Vocal
-
+            Intent intent = new Intent(myContext, VocalMessageActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            myContext.startActivity(intent);
         }
         else if (smsBody.startsWith(MainActivityController.CODE_LOCALISER))
         {

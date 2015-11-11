@@ -1,13 +1,20 @@
 package fr.enac.lostmyandroid.views;
 
+import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Path;
 import android.hardware.Sensor;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +23,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import java.io.File;
 
 import fr.enac.lostmyandroid.Controllers.MainActivityController;
 import fr.enac.lostmyandroid.R;
@@ -28,9 +37,10 @@ import fr.enac.lostmyandroid.utilities.VibrationSensor;
  * que l'utilisateur peut lancer : <i>Sonner, Envoyer un message vocal, Envoyer un message
  * texte, Localiser et afficher sur un Map.</i>
  */
-public class MainActivity extends AppCompatActivity implements PopupMessage.NoticeDialogListener{
+public class MainActivity extends AppCompatActivity implements PopupMessage.NoticeDialogListener {
 
     private MainActivityController myController;
+    public static String vocalMessageLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +60,10 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
     }
 
     /**
-     *  Implémentation de l'interface de dialogue (Pop Up Message)
-     *  @param dialog le fragment de dialogue qui s'affichera
-     *  @see class PopUpMessage
+     * Implémentation de l'interface de dialogue (Pop Up Message)
+     *
+     * @param dialog le fragment de dialogue qui s'affichera
+     * @see class PopUpMessage
      */
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
@@ -80,18 +91,48 @@ public class MainActivity extends AppCompatActivity implements PopupMessage.Noti
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.record_vocal) {
+            int ACTIVITY_RECORD_SOUND = 1;
+            Intent intent = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
+            startActivityForResult(intent, ACTIVITY_RECORD_SOUND);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            //Bundle extras = data.getExtras();
+            try {
+                Uri u = data.getData();
+                try {
+                    vocalMessageLocation = getRealPathFromURI(u);
+                } catch (Exception ex) {
+                    vocalMessageLocation = u.getPath();
+                }
+            } catch (Exception ex) {
+                String s = ex.toString();
+            }
+        } else {
+            Log.i("vocal record", "onActivityResult Failed to get music");
+        }
+    }
+
+    public String getRealPathFromURI(Uri contentUri) {
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(contentUri, proj, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
+
     // FIXME le faire pour l'activity de l'alarme
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        Toast.makeText(getApplicationContext(),"Back pressed in main", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Back pressed in main", Toast.LENGTH_LONG).show();
     }
 
 
