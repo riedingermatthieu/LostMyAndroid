@@ -43,7 +43,6 @@ public class AlertAlarmActivityController {
         registerStopButtonListener();
         initAdminComponents();
         enableAdminMode();
-
     }
 
     public void registerStopButtonListener() {
@@ -52,8 +51,8 @@ public class AlertAlarmActivityController {
             public void onClick(View v) {
                 // TODO envoyer vers le lockscreen, s'il Unlock on arrête l'alarme
 
-                mPlayer.stop();
-                myActivity.finish();
+                stopSound();
+                // myActivity.finish();
 
                 /*
                 Intent intent = new Intent(myActivity.getApplicationContext(), LockActivity.class);
@@ -79,8 +78,8 @@ public class AlertAlarmActivityController {
     }
 
     public void stopSound() {
-        lockPhone();
         mPlayer.stop();
+        lockPhone();
     }
 
     public void putMaxSound() {
@@ -112,7 +111,4 @@ public class AlertAlarmActivityController {
             Toast.makeText(myActivity.getApplicationContext(), "Not Registered as admin", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
 }

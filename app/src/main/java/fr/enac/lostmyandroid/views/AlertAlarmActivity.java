@@ -23,7 +23,7 @@ public class AlertAlarmActivity extends AppCompatActivity {
         String message = getIntent().getStringExtra("message");
         myController = new AlertAlarmActivityController(this, message);
 
-        myController.putMaxSound();
+        // myController.putMaxSound();
         myController.playSound(R.raw.alarm);
         myController.showMessage();
 
@@ -32,7 +32,6 @@ public class AlertAlarmActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        myController.stopSound();
     }
 
     @Override
@@ -40,7 +39,7 @@ public class AlertAlarmActivity extends AppCompatActivity {
         if (requestCode == ADMIN_INTENT) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(getApplicationContext(), "Registered As Admin", Toast.LENGTH_SHORT).show();
-            }else{
+            } else{
                 Toast.makeText(getApplicationContext(), "Failed to register as Admin", Toast.LENGTH_SHORT).show();
             }
         }
